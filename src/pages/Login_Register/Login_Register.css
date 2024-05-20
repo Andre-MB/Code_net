@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: rgb(0, 0, 0);
+  color: #000000;
+}
+
+.cont {
+  background-color: aliceblue;
+  height: auto;
+  width: auto;
+  padding: 50px;
+  border-radius: 20px;
+  position: absolute;
+  top: calc(50% - 300px);
+  right: calc(50% - 200px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputbox {
+  position: relative;
+  margin: 10px 0;
+  width: 310px;
+  border-bottom: 2px solid #000000;
+}
+
+.inputbox label {
+  position: absolute;
+  top: 60%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #000000;
+  font-size: 1em;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+  top: 1px;
+}
+
+.inputbox input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  /* padding: 1px 0 5px; */
+  padding-left: 5px;
+  color: #000000;
+}
+
+.inputbox ion-icon {
+  position: absolute;
+  right: 8px;
+  color: #000000;
+  font-size: 1.2em;
+  top: 20px;
+}
+
+button {
+  background-color: #000000;
+  color: #fff;
+  width: 45%;
+  height: auto;
+  padding: 5px 0;
+  font-size: 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+button:hover {
+  background-color: #0d1d27;
+}
+
+span {
+  font-size: 30px;
+}
+
+a {
+  margin-top: 30px;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.btn_google_git {
+  width: 100%;
+}
+
+.or {
+  margin: 10px;
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.google_git {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+hr {
+  margin: 10px;
+  width: 100%;
+}

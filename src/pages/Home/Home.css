@@ -1,0 +1,25 @@
+.home {
+  height: 100vh;
+  background-color: #737373;
+}
+
+header {
+  background-color: black;
+  color: #ffffff;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search_perf {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+input[name="search"] {
+  border-radius: 20px;
+  padding: 5px;
+  padding-left: 15px;
+}
