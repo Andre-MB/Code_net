@@ -2,6 +2,7 @@ import { db } from "../firebase/config";
 
 import {
     getAuth,
+    sendEmailVerification,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     updateProfile,
@@ -44,7 +45,12 @@ export const useAuthentication = () => {
                 displayName: data.displayName
             })
 
+            // const userC = userCredential.user;
+
+            sendEmailVerification(auth.currentUser);
+
             setLoading(false)
+
 
             return user
 

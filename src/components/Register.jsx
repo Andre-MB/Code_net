@@ -30,8 +30,9 @@ const Register = ({ register }) => {
     }
 
     const res = await createUser(user);
+    // console.log(res);
 
-    console.log(res);
+    // location.href = "/";
   };
 
   useEffect(() => {
@@ -46,14 +47,14 @@ const Register = ({ register }) => {
         <h1>Code_net</h1>
 
         <div className="inputbox">
-          <ion-icon name="accessibility-outline"></ion-icon>
+          <ion-icon name="person-outline"></ion-icon>
           <input
             type="text"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
             required
           />
-          <label for="">Username</label>
+          <label>Username</label>
         </div>
 
         <div className="inputbox">
@@ -64,7 +65,7 @@ const Register = ({ register }) => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <label for="">Email</label>
+          <label>Email</label>
         </div>
 
         <div className="inputbox">
@@ -75,18 +76,18 @@ const Register = ({ register }) => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <label for="">Password</label>
+          <label>Password</label>
         </div>
 
         <div className="inputbox">
           <ion-icon name="lock-closed-outline"></ion-icon>
           <input
-            type="confirm_password"
+            type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-          <label for="">Confirm Password</label>
+          <label>Confirm Password</label>
         </div>
 
         {!loading && <button>Register</button>}

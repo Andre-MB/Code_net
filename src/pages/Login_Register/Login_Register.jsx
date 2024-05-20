@@ -39,7 +39,7 @@ const Login_Register = () => {
   }, []);
 
   const particlesLoaded = (container) => {
-    console.log(container);
+    // console.log(container);
   };
 
   const options = useMemo(
