@@ -51,7 +51,6 @@ export const useAuthentication = () => {
 
             setLoading(false)
 
-
             return user
 
         } catch (error) {
@@ -76,7 +75,6 @@ export const useAuthentication = () => {
     // Logout - Sing out
     const logout = () => {
         checkIfisCancelled();
-
         signOut(auth)
     }
 
@@ -88,8 +86,13 @@ export const useAuthentication = () => {
         setError()
 
         try {
-            await signInWithEmailAndPassword(auth, data.email, data.password)
-            setLoading(false)
+            const signIn = await signInWithEmailAndPassword(auth, data.email, data.password)
+
+            if (signIn.user.emailVerified) {
+                location.href = "/home";
+            } else {
+                setLoading(false)
+            }
 
         } catch (error) {
             let systemErrorMessage;

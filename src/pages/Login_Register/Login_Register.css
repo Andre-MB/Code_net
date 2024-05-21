@@ -97,9 +97,9 @@ button:hover {
   background-color: #0d1d27;
 }
 
-span {
+/* span {
   font-size: 30px;
-}
+} */
 
 a {
   margin-top: 30px;
@@ -135,4 +135,33 @@ a:hover {
 hr {
   margin: 10px;
   width: 100%;
+}
+
+footer {
+  color: #fff;
+  width: 100%;
+  font-size: 1.3em;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  z-index: 99;
+  position: absolute;
+  bottom: 10px;
+}
+
+footer p,
+footer a {
+  text-decoration: none;
+  color: #fff;
+  text-indent: 10px;
+  margin-top: 0;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 9;
+}
+
+span {
+  color: #fff;
 }

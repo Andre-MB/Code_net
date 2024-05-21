@@ -91,7 +91,7 @@ const Register = ({ register }) => {
         </div>
 
         {!loading && <button>Register</button>}
-        {loading && <button disabled>Aguarde...</button>}
+        {loading && <button disabled>wait...</button>}
       </form>
       {error && <p className="error">{error}</p>}
       <a onClick={register}>To go back</a>

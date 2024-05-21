@@ -130,6 +130,16 @@ const Login_Register = () => {
       ) : (
         <Register register={register} />
       )}
+
+      <footer>
+        <p>
+          <a href="https://github.com/Andre-MB" target="_blank">
+            <ion-icon name="logo-github"></ion-icon>
+            André Bergê
+          </a>
+          <span className="copy"> &copy; 2024 </span>
+        </p>
+      </footer>
     </div>
   );
 };

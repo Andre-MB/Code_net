@@ -1,10 +1,35 @@
 import React from "react";
 import "animate.css";
 
+import { useState, useEffect } from "react";
+import { useAuthentication } from "../hooks/useAuthentication";
+
 const Login = ({ register }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const { login, error: authError, loading } = useAuthentication();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setError("");
+
+    const user = {
+      email,
+      password,
+    };
+
+    const res = await login(user);
   };
+
+  useEffect(() => {
+    if (authError) {
+      setError(authError);
+    }
+  }, [authError]);
+
   return (
     <div className="cont animate__animated animate__zoomInDown">
       <form onSubmit={handleSubmit}>
@@ -12,17 +37,38 @@ const Login = ({ register }) => {
 
         <div className="inputbox">
           <ion-icon name="mail-outline"></ion-icon>
-          <input type="email" required />
+          <input
+            autoFocus
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
           <label>Email</label>
         </div>
 
         <div className="inputbox">
           <ion-icon name="lock-closed-outline"></ion-icon>
-          <input type="password" required />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
           <label>Password</label>
         </div>
 
-        <button>Log in</button>
+        {!loading && (
+          <button type="submit" className="btn">
+            Log in
+          </button>
+        )}
+        {loading && (
+          <button className="btn" disabled>
+            wait...
+          </button>
+        )}
+        {error && <p className="error">{error}</p>}
       </form>
 
       <div className="btn_google_git">
