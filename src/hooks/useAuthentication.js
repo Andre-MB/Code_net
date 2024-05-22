@@ -7,13 +7,22 @@ import {
     signInWithEmailAndPassword,
     updateProfile,
     signOut,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged,
+    signInWithRedirect
 } from "firebase/auth";
+
+import { GoogleLogin } from '@react-oauth/google';
+
 
 import { useState, useEffect } from "react";
 
 export const useAuthentication = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
+
+    const [user, setUser] = useState({});
 
     // cleanup
     // deal with memory leak
@@ -110,9 +119,40 @@ export const useAuthentication = () => {
         }
     }
 
+    // Login Google - sing in
+    const loginGoogle = async () => {
+        checkIfisCancelled();
+
+        setLoading()
+        setError()
+
+
+        // signInWithPopup(auth, provider)
+        //     .then((result) => {
+        //         setUser(result.user);
+        //     })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
+
+        try {
+            const provider = new GoogleAuthProvider();
+
+            await signInWithPopup(auth, provider)
+                .then(result => setUser(result.user))
+                .catch((error) => {
+                    console.log(error);
+                });
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         return () => setCancelled(true)
     }, []);
 
-    return { auth, createUser, error, loading, logout, login }
+    return { auth, createUser, error, loading, logout, login, loginGoogle }
+
 };

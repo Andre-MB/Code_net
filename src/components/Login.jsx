@@ -9,7 +9,7 @@ const Login = ({ register }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { login, error: authError, loading } = useAuthentication();
+  const { login, error: authError, loading, loginGoogle } = useAuthentication();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,8 +30,12 @@ const Login = ({ register }) => {
     }
   }, [authError]);
 
+  // window.onload = function () {
+  //   document.click();
+  // };
+
   return (
-    <div className="cont animate__animated animate__zoomInDown">
+    <div id="cont" className="cont animate__animated animate__zoomInDown">
       <form onSubmit={handleSubmit}>
         <h1>Code_net</h1>
 
@@ -78,7 +82,7 @@ const Login = ({ register }) => {
           <hr />
         </div>
         <div className="google_git">
-          <button>
+          <button onClick={loginGoogle}>
             <ion-icon name="logo-google"></ion-icon>
             Google
           </button>
