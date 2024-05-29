@@ -1,7 +1,7 @@
 import React from "react";
 import "animate.css";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAuthentication } from "../hooks/useAuthentication";
 
 const Login = ({ register }) => {
@@ -9,7 +9,13 @@ const Login = ({ register }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { login, error: authError, loading, loginGoogle } = useAuthentication();
+  const {
+    login,
+    error: authError,
+    loading,
+    loginGoogle,
+    loginGithub,
+  } = useAuthentication();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,10 +36,6 @@ const Login = ({ register }) => {
     }
   }, [authError]);
 
-  // window.onload = function () {
-  //   document.click();
-  // };
-
   return (
     <div id="cont" className="cont animate__animated animate__zoomInDown">
       <form onSubmit={handleSubmit}>
@@ -42,6 +44,7 @@ const Login = ({ register }) => {
         <div className="inputbox">
           <ion-icon name="mail-outline"></ion-icon>
           <input
+            id="email"
             autoFocus
             type="email"
             value={email}
@@ -54,6 +57,7 @@ const Login = ({ register }) => {
         <div className="inputbox">
           <ion-icon name="lock-closed-outline"></ion-icon>
           <input
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -86,7 +90,7 @@ const Login = ({ register }) => {
             <ion-icon name="logo-google"></ion-icon>
             Google
           </button>
-          <button>
+          <button onClick={loginGithub}>
             <ion-icon name="logo-github"></ion-icon>
             GitHub
           </button>

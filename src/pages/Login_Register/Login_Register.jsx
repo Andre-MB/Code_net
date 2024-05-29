@@ -131,13 +131,13 @@ const Login_Register = () => {
         <Register register={register} />
       )}
 
-      <footer>
+      <footer id="footer">
         <p>
           <a href="https://github.com/Andre-MB" target="_blank">
             <ion-icon name="logo-github"></ion-icon>
             André Bergê
           </a>
-          <span className="copy"> &copy; 2024 </span>
+          <span className="copy"> &copy; Code_net 2024 </span>
         </p>
       </footer>
     </div>

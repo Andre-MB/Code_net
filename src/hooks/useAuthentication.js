@@ -10,10 +10,10 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     onAuthStateChanged,
-    signInWithRedirect
+    signInWithRedirect,
+    GithubAuthProvider,
 } from "firebase/auth";
 
-import { GoogleLogin } from '@react-oauth/google';
 
 
 import { useState, useEffect } from "react";
@@ -60,9 +60,12 @@ export const useAuthentication = () => {
 
             setLoading(false)
 
-            return user
+            signOut(auth);
+
+            location.href = "/";
 
         } catch (error) {
+
             console.log(error.message)
             console.log(typeof error.message)
 
@@ -84,7 +87,9 @@ export const useAuthentication = () => {
     // Logout - Sing out
     const logout = () => {
         checkIfisCancelled();
-        signOut(auth)
+        signOut(auth);
+        location.href = "/";
+
     }
 
     // Login - sing in
@@ -100,6 +105,8 @@ export const useAuthentication = () => {
             if (signIn.user.emailVerified) {
                 location.href = "/home";
             } else {
+                setError("E-mail não verificado")
+                signOut(auth);
                 setLoading(false)
             }
 
@@ -107,11 +114,11 @@ export const useAuthentication = () => {
             let systemErrorMessage;
 
             if (error.message.includes("user-not-found")) {
-                systemErrorMessage = "Usuário não encontadp"
+                systemErrorMessage = "Usuário não encontado."
             } else if (error.message.includes("wrong-password")) {
-                systemErrorMessage = "Senha incorreta"
+                systemErrorMessage = "Senha incorreta."
             } else {
-                systemErrorMessage = "Ocorreu um erro, por favor tenta mais tarde."
+                systemErrorMessage = "Usuário ou senha invalidos."
             }
 
             setError(systemErrorMessage)
@@ -119,27 +126,40 @@ export const useAuthentication = () => {
         }
     }
 
-    // Login Google - sing in
+    // Login Google 
     const loginGoogle = async () => {
         checkIfisCancelled();
 
         setLoading()
         setError()
 
-
-        // signInWithPopup(auth, provider)
-        //     .then((result) => {
-        //         setUser(result.user);
-        //     })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
-
         try {
             const provider = new GoogleAuthProvider();
 
+            const singInGoogle = await signInWithPopup(auth, provider)
+                .then(result => { setUser(result.user); location.href = "/home" })
+                .catch((error) => {
+                    console.log(error)
+                });
+
+        } catch (error) {
+            setError(error);
+        }
+
+    }
+
+    // Login Github 
+    const loginGithub = async () => {
+        checkIfisCancelled();
+
+        setLoading()
+        setError()
+
+        try {
+            const provider = new GithubAuthProvider();
+
             await signInWithPopup(auth, provider)
-                .then(result => setUser(result.user))
+                .then(result => { setUser(result.user); location.href = "/home" })
                 .catch((error) => {
                     console.log(error);
                 });
@@ -153,6 +173,6 @@ export const useAuthentication = () => {
         return () => setCancelled(true)
     }, []);
 
-    return { auth, createUser, error, loading, logout, login, loginGoogle }
+    return { auth, createUser, error, loading, logout, login, loginGoogle, loginGithub }
 
 };
