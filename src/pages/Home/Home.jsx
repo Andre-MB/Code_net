@@ -18,8 +18,8 @@ const Home = () => {
 
   const [text, setText] = useState("");
 
-  const [toufImage, setOnOffImage] = useState(false);
-  const [toufTags, setOnOffTags] = useState(false);
+  const [onOffImage, setOnOffImage] = useState(false);
+  const [onOffTags, setOnOffTags] = useState(false);
 
   const { user } = useAuthValue();
 
@@ -28,11 +28,11 @@ const Home = () => {
   };
 
   const imageClick = () => {
-    toufImage ? setOnOffImage(false) : setOnOffImage(true);
+    onOffImage ? setOnOffImage(false) : setOnOffImage(true);
   };
 
   const tagsClick = () => {
-    toufTags ? setOnOffTags(false) : setOnOffTags(true);
+    onOffTags ? setOnOffTags(false) : setOnOffTags(true);
   };
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const Home = () => {
               required
             />
 
-            {toufImage && (
+            {onOffImage && (
               <>
                 <label htmlFor="image">Image</label>
 
@@ -77,7 +77,7 @@ const Home = () => {
               </>
             )}
 
-            {toufTags && (
+            {onOffTags && (
               <>
                 <label htmlFor="tags">Tags</label>
                 <input

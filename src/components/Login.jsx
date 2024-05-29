@@ -67,7 +67,7 @@ const Login = ({ register }) => {
         </div>
 
         {!loading && (
-          <button type="submit" className="btn">
+          <button type="submit" className="button-27">
             Log in
           </button>
         )}
@@ -86,11 +86,11 @@ const Login = ({ register }) => {
           <hr />
         </div>
         <div className="google_git">
-          <button onClick={loginGoogle}>
+          <button className="button-85" onClick={loginGoogle}>
             <ion-icon name="logo-google"></ion-icon>
             Google
           </button>
-          <button onClick={loginGithub}>
+          <button className="button-85" onClick={loginGithub}>
             <ion-icon name="logo-github"></ion-icon>
             GitHub
           </button>
